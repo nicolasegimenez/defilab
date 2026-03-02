@@ -1,2 +1,2 @@
 # defilab
-defi lab web
+laboratorio de finanzas descentralizadas y testing tecnico.
