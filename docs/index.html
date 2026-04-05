@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentación Técnica - DefiLab</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --secondary: #06b6d4;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --text: #334155;
+            --border: #e2e8f0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .nav-tab {
+            padding: 0.75rem 1.5rem;
+            background: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .nav-tab:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+        
+        .nav-tab.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .content-section {
+            display: none;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .content-section.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid var(--secondary);
+            padding-bottom: 0.5rem;
+        }
+        
+        h3 {
+            color: var(--dark);
+            margin: 1.5rem 0 1rem;
+        }
+        
+        .diagram-container {
+            background: var(--light);
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+        
+        .flowchart {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .box {
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            min-width: 200px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .start-end {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            border-radius: 25px;
+        }
+        
+        .process {
+            background: linear-gradient(135deg, var(--primary), #4338ca);
+            color: white;
+        }
+        
+        .decision {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            transform: rotate(0deg);
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            width: 200px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+        
+        .arrow {
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-weight: bold;
+        }
+        
+        .architecture-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .arch-card {
+            background: var(--light);
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .arch-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+        
+        .arch-card h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        th {
+            background: var(--primary);
+            color: white;
+            font-weight: 600;
+        }
+        
+        tr:hover {
+            background: var(--light);
+        }
+        
+        code {
+            background: var(--dark);
+            color: #10b981;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        pre {
+            background: var(--dark);
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+        
+        .badge-info { background: #dbeafe; color: #1e40af; }
+        .badge-success { background: #d1fae5; color: #065f46; }
+        .badge-warning { background: #fef3c7; color: #92400e; }
+        
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            color: var(--text);
+            opacity: 0.8;
+        }
+        
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            header h1 { font-size: 2rem; }
+            .nav-tabs { flex-direction: column; }
+            .architecture-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📚 Documentación Técnica</h1>
+            <p>DefiLab - Dashboard Admin & Componentes UI</p>
+        </header>
+
+        <nav class="nav-tabs">
+            <button class="nav-tab active" onclick="showSection('architecture')">🏗️ Arquitectura</button>
+            <button class="nav-tab" onclick="showSection('flow-auth')">🔄 Flujo Autenticación</button>
+            <button class="nav-tab" onclick="showSection('flow-app')">⚡ Flujo Aplicación</button>
+            <button class="nav-tab" onclick="showSection('components')">🧩 Componentes</button>
+            <button class="nav-tab" onclick="showSection('setup')">🛠️ Instalación</button>
+        </nav>
+
+        <!-- Sección: Arquitectura -->
+        <section id="architecture" class="content-section active">
+            <h2>🏗️ Arquitectura del Sistema</h2>
+            <p>DefiLab sigue una arquitectura modular basada en componentes reutilizables, separando claramente la estructura, el estilo y la funcionalidad.</p>
+            
+            <div class="architecture-grid">
+                <div class="arch-card">
+                    <h4>📁 Estructura de Archivos</h4>
+                    <pre><code>defilab/
+├── styles/          # Hojas de estilo CSS
+├── docs/            # Documentación técnica
+├── components/      # Componentes UI
+└── index.html       # Punto de entrada</code></pre>
+                </div>
+                <div class="arch-card">
+                    <h4>🎨 Capas de Diseño</h4>
+                    <ul>
+                        <li><strong>HTML:</strong> Estructura semántica</li>
+                        <li><strong>CSS:</strong> Estilos y responsividad</li>
+                        <li><strong>JS:</strong> Interactividad y gráficos</li>
+                    </ul>
+                </div>
+                <div class="arch-card">
+                    <h4>🔌 Dependencias</h4>
+                    <span class="badge badge-info">Bootstrap 5</span>
+                    <span class="badge badge-success">Chart.js</span>
+                    <span class="badge badge-warning">jQuery</span>
+                    <span class="badge badge-info">Font Awesome</span>
+                </div>
+            </div>
+
+            <h3>Diagrama de Arquitectura</h3>
+            <div class="diagram-container">
+                <div class="flowchart">
+                    <div class="box start-end">🌐 Navegador Web</div>
+                    <div class="arrow">⬇️</div>
+                    <div class="box process">📄 index.html<br>(Estructura Principal)</div>
+                    <div class="arrow">⬇️</div>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+                        <div class="box process">🎨 styles/<br>(CSS)</div>
+                        <div class="box process">⚡ scripts/<br>(JS)</div>
+                        <div class="box process">🧩 components/<br>(UI)</div>
+                    </div>
+                    <div class="arrow">⬇️</div>
+                    <div class="box start-end">✅ Dashboard Renderizado</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección: Flujo Autenticación -->
+        <section id="flow-auth" class="content-section">
+            <h2>🔄 Flujo de Autenticación</h2>
+            <p>Proceso seguro de validación de usuarios para acceder al dashboard administrativo.</p>
+            
+            <div class="diagram-container">
+                <div class="flowchart">
+                    <div class="box start-end">👤 Usuario Ingresa Credenciales</div>
+                    <div class="arrow">⬇️</div>
+                    <div class="box process">📝 Formulario Login</div>
+                    <div class="arrow">⬇️</div>
+                    <div class="decision">¿Datos Válidos?</div>
+                    <div class="arrow">⬇️</div>
+                    <div style="display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center;">
+                        <div style="text-align: center;">
+                            <div class="box start-end" style="background: #10b981;">✅ Acceso Concedido</div>
+                            <p><small>→ Redirige al Dashboard</small></p>
+                        </div>
+                        <div style="text-align: center;">
+                            <div class="box start-end" style="background: #ef4444;">❌ Error</div>
+                            <p><small>→ Muestra mensaje de error</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Características de Seguridad</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Característica</th>
+                        <th>Descripción</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Validación de Formulario</td>
+                        <td>Verificación de campos requeridos</td>
+                        <td><span class="badge badge-success">Activo</span></td>
+                    </tr>
+                    <tr>
+                        <td>Encriptación</td>
+                        <td>HTTPS para transmisión de datos</td>
+                        <td><span class="badge badge-success">Recomendado</span></td>
+                    </tr>
+                    <tr>
+                        <td>Sesiones</td>
+                        <td>Gestión de tokens de sesión</td>
+                        <td><span class="badge badge-info">Configurable</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Sección: Flujo Aplicación -->
+        <section id="flow-app" class="content-section">
+            <h2>⚡ Flujo de Carga de la Aplicación</h2>
+            <p>Secuencia de eventos desde que el usuario accede hasta que el dashboard está completamente funcional.</p>
+            
+            <div class="diagram-container">
+                <div class="flowchart">
+                    <div class="box start-end">🚀 Solicitud HTTP</div>
+                    <div class="arrow">⬇️</div>
+                    <div class="box process">📥 Carga HTML Principal</div>
+                    <div class="arrow">⬇️</div>
+                    <div class="box process">🎨 Carga de Estilos CSS</div>
+                    <div class="arrow">⬇️</div>
+                    <div class="box process">⚡ Ejecución de Scripts JS</div>
+                    <div class="arrow">⬇️</div>
+                    <div class="decision">¿Recursos Listos?</div>
+                    <div class="arrow">⬇️</div>
+                    <div class="box process">📊 Inicialización de Gráficos</div>
+                    <div class="arrow">⬇️</div>
+                    <div class="box start-end">✨ Dashboard Interactivo</div>
+                </div>
+            </div>
+
+            <h3>Tiempos de Carga Estimados</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Recurso</th>
+                        <th>Tamaño Promedio</th>
+                        <th>Tiempo de Carga</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>HTML</td>
+                        <td>~15 KB</td>
+                        <td>&lt; 0.5s</td>
+                    </tr>
+                    <tr>
+                        <td>CSS</td>
+                        <td>~45 KB</td>
+                        <td>&lt; 1s</td>
+                    </tr>
+                    <tr>
+                        <td>JavaScript</td>
+                        <td>~120 KB</td>
+                        <td>&lt; 2s</td>
+                    </tr>
+                    <tr>
+                        <td>Gráficos (Datos)</td>
+                        <td>Variable</td>
+                        <td>&lt; 3s</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Sección: Componentes -->
+        <section id="components" class="content-section">
+            <h2>🧩 Componentes UI Disponibles</h2>
+            <p>Biblioteca completa de componentes reutilizables para construir dashboards financieros.</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Componente</th>
+                        <th>Descripción</th>
+                        <th>Ubicación</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>📊 Gráficos Financieros</td>
+                        <td>Visualización de datos con Chart.js</td>
+                        <td><code>components/charts/</code></td>
+                        <td><span class="badge badge-success">Listo</span></td>
+                    </tr>
+                    <tr>
+                        <td>📝 Formularios</td>
+                        <td>Inputs validados para capturar datos</td>
+                        <td><code>components/forms/</code></td>
+                        <td><span class="badge badge-success">Listo</span></td>
+                    </tr>
+                    <tr>
+                        <td>🔐 Autenticación</td>
+                        <td>Login y registro de usuarios</td>
+                        <td><code>components/auth/</code></td>
+                        <td><span class="badge badge-success">Listo</span></td>
+                    </tr>
+                    <tr>
+                        <td>📋 Tablas de Datos</td>
+                        <td>Tablas responsivas con paginación</td>
+                        <td><code>components/tables/</code></td>
+                        <td><span class="badge badge-success">Listo</span></td>
+                    </tr>
+                    <tr>
+                        <td>🎯 Tarjetas (Cards)</td>
+                        <td>Resúmenes de métricas clave</td>
+                        <td><code>components/cards/</code></td>
+                        <td><span class="badge badge-success">Listo</span></td>
+                    </tr>
+                    <tr>
+                        <td>🍔 Navegación</td>
+                        <td>Menús laterales y superiores</td>
+                        <td><code>components/nav/</code></td>
+                        <td><span class="badge badge-success">Listo</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Ejemplo de Uso: Gráfico Financiero</h3>
+            <pre><code>&lt;!-- Incluir Chart.js --&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/chart.js"&gt;&lt;/script&gt;
+
+&lt;!-- Contenedor del gráfico --&gt;
+&lt;canvas id="miGrafico"&gt;&lt;/canvas&gt;
+
+&lt;!-- Configuración en JavaScript --&gt;
+&lt;script&gt;
+  const ctx = document.getElementById('miGrafico');
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['Ene', 'Feb', 'Mar', 'Abr'],
+      datasets: [{
+        label: 'Precio Token',
+        data: [120, 150, 180, 220],
+        borderColor: '#4f46e5'
+      }]
+    }
+  });
+&lt;/script&gt;</code></pre>
+        </section>
+
+        <!-- Sección: Instalación -->
+        <section id="setup" class="content-section">
+            <h2>🛠️ Guía de Instalación y Configuración</h2>
+            <p>Sigue estos pasos para configurar DefiLab en tu entorno local.</p>
+            
+            <h3>Requisitos Previos</h3>
+            <ul>
+                <li>Navegador web moderno (Chrome, Firefox, Edge)</li>
+                <li>Conexión a internet (para CDN de dependencias)</li>
+                <li>Editor de código (VS Code recomendado)</li>
+            </ul>
+
+            <h3>Pasos de Instalación</h3>
+            <div class="diagram-container">
+                <ol style="line-height: 2;">
+                    <li><strong>Clonar el repositorio:</strong>
+                        <pre><code>git clone https://github.com/nicolasegimenez/defilab.git
+cd defilab</code></pre>
+                    </li>
+                    <li><strong>Abrir el archivo principal:</strong>
+                        <pre><code>Abre index.html en tu navegador</code></pre>
+                    </li>
+                    <li><strong>Personalizar estilos (opcional):</strong>
+                        <pre><code>Edita los archivos en la carpeta styles/</code></pre>
+                    </li>
+                    <li><strong>Desplegar en producción:</strong>
+                        <pre><code>Sube los archivos a tu hosting o usa GitHub Pages</code></pre>
+                    </li>
+                </ol>
+            </div>
+
+            <h3>Estructura de Carpetas</h3>
+            <pre><code>defilab/
+├── index.html          # Página principal
+├── styles/
+│   ├── main.css       # Estilos globales
+│   └── components.css # Estilos de componentes
+├── docs/
+│   ├── diagrams/      # Imágenes de diagramas
+│   └── index.html     # Esta documentación
+└── README.md          # Documentación principal</code></pre>
+
+            <h3>Despliegue en GitHub Pages</h3>
+            <p>Esta documentación está disponible en vivo en:</p>
+            <p><a href="https://nicolasegimenez.github.io/defilab/" target="_blank" style="color: var(--primary); font-weight: bold;">🔗 nicolasegimenez.github.io/defilab/</a></p>
+        </section>
+
+        <footer>
+            <p>© 2024 DefiLab - Documentación Técnica</p>
+            <p>Desarrollado con ❤️ para la comunidad DeFi</p>
+        </footer>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            // Ocultar todas las secciones
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Desactivar todos los tabs
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Mostrar la sección seleccionada
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Activar el tab correspondiente
+            event.target.classList.add('active');
+            
+            // Scroll suave hacia arriba
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

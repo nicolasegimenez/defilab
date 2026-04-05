@@ -51,7 +51,8 @@
 │   ├── img/              # Recursos de imagen (incluye logo.png)
 │   └── index.html        # Página principal del dashboard
 ├── docs/                 # Documentación técnica completa
-│   └── documentacion_tecnica.tex  # Documento LaTeX con diagramas
+│   ├── index.html        # Documentación interactiva HTML/CSS/JS
+│   └── diagrams/         # Imágenes y recursos de diagramas
 └── README.md             # Este archivo
 ```
 
@@ -59,38 +60,25 @@
 
 ## 📚 Documentación Técnica
 
-Para una comprensión completa del proyecto, consulta nuestra [documentación técnica en LaTeX](docs/documentacion_tecnica.tex), que incluye:
-
-- 🏗️ **Diagramas de Arquitectura**: Visualización completa del sistema
-- 🔄 **Diagramas de Flujo**: 
-  - Flujo de carga de la aplicación
-  - Flujo de autenticación de usuario
-  - Flujo de renderizado de gráficos
-- 🧩 **Diagrama de Componentes**: Relación entre módulos UI
-- 📋 **Tablas de Componentes**: Catálogo completo con ubicaciones
-- 🛠️ **Guías de Implementación**: Pasos detallados de instalación
-- 🤝 **Flujo de Contribución**: Cómo participar en el proyecto
-
-### 📄 Ver Documentación en Vivo
-
-La documentación técnica está disponible en formato PDF a través de GitHub Pages:
+Para una comprensión completa del proyecto, consulta nuestra **documentación técnica interactiva** que incluye diagramas de flujo, arquitectura y guías detalladas:
 
 <div align="center">
-  <a href="https://tu-usuario.github.io/defilab/docs/documentacion_tecnica.pdf" target="_blank">
-    <img src="https://via.placeholder.com/400x120/3b82f6/ffffff?text=📄+Ver+Documentación+PDF" alt="Ver Documentación PDF" width="100%"/>
+  <a href="docs/index.html" target="_blank">
+    <img src="https://via.placeholder.com/500x150/4f46e5/ffffff?text=📄+Ver+Documentación+Completa" alt="Ver Documentación" width="100%"/>
   </a>
   <br/>
-  <small>🔗 <code>https://tu-usuario.github.io/defilab/docs/documentacion_tecnica.pdf</code></small>
+  <small>🔗 <code>https://nicolasegimenez.github.io/defilab/docs/index.html</code></small>
 </div>
 
-> **Nota**: La documentación PDF se genera automáticamente con cada push a la rama `main` usando GitHub Actions.
+### 📑 Contenido de la Documentación
 
-**Para compilar localmente:**
-```bash
-# Requiere tener instalado pdflatex o xelatex
-pdflatex docs/documentacion_tecnica.tex
-# Generará docs/documentacion_tecnica.pdf
-```
+La documentación incluye las siguientes secciones interactivas:
+
+- 🏗️ **Arquitectura del Sistema**: Diagramas completos de la estructura del proyecto
+- 🔄 **Flujo de Autenticación**: Proceso seguro de validación de usuarios
+- ⚡ **Flujo de la Aplicación**: Secuencia de carga y renderizado
+- 🧩 **Catálogo de Componentes**: Todos los componentes UI disponibles con ejemplos
+- 🛠️ **Guía de Instalación**: Pasos detallados para configurar el proyecto
 
 ## 🛠️ Instalación y Uso
 
