@@ -69,6 +69,35 @@ export POOL_MANAGER_HASH=" 0xf8510c87bbf52a354ee3d31089f1d19be3d0dd328f266878f35
 ### 3. Crear un Pool de Liquidez
 Puedes usar los scripts predefinidos en la carpeta `scripts/` para inicializar pools con pares de tokens específicos.
 
+ Pasos para crear el Pool:
+
+   1. Asegúrate de tener tu clave privada configurada:
+     Si estás usando Anvil localmente, usa la primera clave privada que te da
+  el nodo:
+   1    export PRIVATE_KEY="tu_clave_privada_de_anvil"
+
+   2. Verifica las direcciones en el script:
+     Abre scripts/CreatePool.s.sol y asegúrate de que currency1 y poolManager
+  coincidan con las direcciones que obtuviste al desplegar el token y el
+  manager en los pasos anteriores.
+
+   3. Ejecuta el script de creación:
+     Usa el siguiente comando para ejecutar el script y realizar la transacción
+  en tu nodo local:
+
+   1    forge script scripts/CreatePool.s.sol:CreatePool \
+   2      --rpc-url http://127.0.0.1:8545 \
+   3      --private-key $PRIVATE_KEY \
+   4      --broadcast
+
+  ¿Qué hace este script?
+   - Define un par de tokens (Ether y tu Token ERC20).
+   - Configura una comisión del 0.3% (lpFee = 3000).
+   - Establece un precio inicial (en formato Q64.96).
+   - Llama a la función initialize del PoolManager para crear formalmente el
+     pool en Uniswap v4.
+
+     
 ## 📊 Dashboard y Visualización
 El proyecto incluye una interfaz web interactiva. Para verla, puedes abrir el archivo `docs/defilab.html` en tu navegador. Esta interfaz sirve como un portal para monitorizar el estado del laboratorio y acceder a guías técnicas.
 
