@@ -50,10 +50,33 @@
 │   ├── js/               # Scripts personalizados
 │   ├── img/              # Recursos de imagen (incluye logo.png)
 │   └── index.html        # Página principal del dashboard
+├── docs/                 # Documentación técnica completa
+│   └── documentacion_tecnica.tex  # Documento LaTeX con diagramas
 └── README.md             # Este archivo
 ```
 
 > **Nota**: La estructura está optimizada para ser ligera. Simplemente abre `styles/index.html` en tu navegador para ver el dashboard en acción.
+
+## 📚 Documentación Técnica
+
+Para una comprensión completa del proyecto, consulta nuestra [documentación técnica en LaTeX](docs/documentacion_tecnica.tex), que incluye:
+
+- 🏗️ **Diagramas de Arquitectura**: Visualización completa del sistema
+- 🔄 **Diagramas de Flujo**: 
+  - Flujo de carga de la aplicación
+  - Flujo de autenticación de usuario
+  - Flujo de renderizado de gráficos
+- 🧩 **Diagrama de Componentes**: Relación entre módulos UI
+- 📋 **Tablas de Componentes**: Catálogo completo con ubicaciones
+- 🛠️ **Guías de Implementación**: Pasos detallados de instalación
+- 🤝 **Flujo de Contribución**: Cómo participar en el proyecto
+
+**Para compilar la documentación LaTeX:**
+```bash
+# Requiere tener instalado pdflatex o xelatex
+pdflatex docs/documentacion_tecnica.tex
+# Generará docs/documentacion_tecnica.pdf
+```
 
 ## 🛠️ Instalación y Uso
 
