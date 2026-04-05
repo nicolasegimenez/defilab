@@ -71,7 +71,21 @@ Para una comprensión completa del proyecto, consulta nuestra [documentación t�
 - 🛠️ **Guías de Implementación**: Pasos detallados de instalación
 - 🤝 **Flujo de Contribución**: Cómo participar en el proyecto
 
-**Para compilar la documentación LaTeX:**
+### 📄 Ver Documentación en Vivo
+
+La documentación técnica está disponible en formato PDF a través de GitHub Pages:
+
+<div align="center">
+  <a href="https://tu-usuario.github.io/defilab/docs/documentacion_tecnica.pdf" target="_blank">
+    <img src="https://via.placeholder.com/400x120/3b82f6/ffffff?text=📄+Ver+Documentación+PDF" alt="Ver Documentación PDF" width="100%"/>
+  </a>
+  <br/>
+  <small>🔗 <code>https://tu-usuario.github.io/defilab/docs/documentacion_tecnica.pdf</code></small>
+</div>
+
+> **Nota**: La documentación PDF se genera automáticamente con cada push a la rama `main` usando GitHub Actions.
+
+**Para compilar localmente:**
 ```bash
 # Requiere tener instalado pdflatex o xelatex
 pdflatex docs/documentacion_tecnica.tex
